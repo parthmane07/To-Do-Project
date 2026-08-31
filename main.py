@@ -15,7 +15,7 @@ def add_task():
     }
     tasks.append(task)
 
-def view_task():
+def view_tasks():
     print("'View Tasks' selected")
     if tasks == []:
         print("No tasks found.")
@@ -62,7 +62,7 @@ while choice != 5:
         add_task()
 
     elif choice == 2:
-        view_task()
+        view_tasks()
                 
     elif choice == 3:
         mark_task_as_completed()
