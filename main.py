@@ -53,7 +53,7 @@ while choice != 5:
 
     elif choice == 4:
         print("'Delete Task' selected")
-        
+        found = False
 
         for i in tasks:
             print(i["tital"])
@@ -62,7 +62,11 @@ while choice != 5:
 
         for i in tasks:
             if i["tital"] == select_task_to_delete:
+                found = True
                 tasks.remove(i)
+
+        if not found:
+            print("Task not found.")
     
     elif choice == 5:
         print("DONE, Complete your tasks as soon as possible")
