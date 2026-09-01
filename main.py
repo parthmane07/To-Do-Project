@@ -38,7 +38,7 @@ def mark_task_as_completed():
     if tasks != []:
         show_tasks()
         completed_task_number = int(input("Select completed task number:"))
-        j = completed_task_number
+        j = 1
         for i in tasks:
             if j == completed_task_number:
                 found = True
@@ -55,11 +55,14 @@ def delete_task():
     found = False
     if tasks != []: 
         show_tasks() 
-        task_to_delete = input("Select task to delete:")
+        task_to_delete = int(input("Select task to delete:"))
+        j = 1
         for i in tasks:
-            if i["title"] == task_to_delete:
+            if j == task_to_delete:
                 found = True
                 tasks.remove(i)
+                print("Task deleted...")
+            j += 1
         if not found:
             print("Task not found.")
     else:
