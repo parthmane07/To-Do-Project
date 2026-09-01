@@ -2,10 +2,19 @@ import json
 
 tasks = []
 
-with open("tasks.json", "r") as f:
-    tasks = json.load(f)
+try:
+    with open("tasks.json", "r") as f:
+        tasks = json.load(f)
+except FileNotFoundError:
+    tasks = []
+except json.JSONDecodeError:
+    tasks = []
 
 choice = 0
+
+def save_tasks_to_json():
+    with open("tasks.json", "w") as f:
+        json.dump(tasks, f, indent=4)
 
 def show_tasks():
     no = 1
@@ -27,8 +36,7 @@ def add_task():
                 "completed": False
             }
             tasks.append(task)
-            with open("tasks.json", "w") as f:
-                json.dump(tasks, f, indent=4)
+            save_tasks_to_json()
     else:
         print("Enter non-empty task...")
 
@@ -58,8 +66,7 @@ def mark_task_as_completed():
                     if not i["completed"]:    # to check task already completed or not
                         i["completed"] = True
                         print("Task marked as completed...")
-                        with open("tasks.json", "w") as f:
-                            json.dump(tasks, f, indent=4)
+                        save_tasks_to_json()
                     else:
                         print("Task Already completed...")
                 j += 1
@@ -83,6 +90,7 @@ def delete_task():
                     found = True
                     tasks.remove(i)
                     print("Task deleted...")
+                    save_tasks_to_json()
                     break
                 j += 1
             if not found:
