@@ -3,8 +3,10 @@ tasks = []
 choice = 0
 
 def show_tasks():
+    no = 1
     for i in tasks:
-        print(i["title"])
+        print(no,".", i["title"])
+        no += 1
 
 def add_task():
     print("'Add Task' selected")
@@ -35,11 +37,14 @@ def mark_task_as_completed():
     found = False
     if tasks != []:
         show_tasks()
-        completed_task_title = input("Select completed task:")
+        completed_task_number = int(input("Select completed task number:"))
+        j = completed_task_number
         for i in tasks:
-            if i["title"] == completed_task_title:
+            if j == completed_task_number:
                 found = True
                 i["completed"] = True
+                print("Task marked as completed...")
+            j += 1
         if not found:
             print("Task not found.")
     else:
