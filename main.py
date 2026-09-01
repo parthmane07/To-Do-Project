@@ -26,11 +26,13 @@ def view_tasks():
     print("'View Tasks' selected")
     if tasks == []:
         print("No tasks found.")
+    j = 1
     for i in tasks:
         if i["completed"] == True:
-            print(i["title"] + "-- completed")
+            print(j,".", i["title"] + "-- completed")
         else:
-            print(i["title"] + "-- incomplete")
+            print(j,".",i["title"] + "-- incomplete")
+    j += 1
 
 def mark_task_as_completed():
     print("'Mark Task as Completed' selected")
@@ -55,7 +57,7 @@ def delete_task():
     found = False
     if tasks != []: 
         show_tasks() 
-        task_to_delete = int(input("Select task to delete:"))
+        task_to_delete = int(input("Select task number to delete:"))
         j = 1
         for i in tasks:
             if j == task_to_delete:
