@@ -4,7 +4,11 @@
         "completed": false
     },
     {
-        "title": "wash clothes",
+        "title": "gym",
         "completed": false
+    },
+    {
+        "title": "code",
+        "completed": true
     }
 ]
