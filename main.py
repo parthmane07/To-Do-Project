@@ -28,26 +28,32 @@ def view_tasks():
 def mark_task_as_completed():
     print("'Mark Task as Completed' selected")
     found = False
-    show_tasks()
-    completed_task_title = input("Select completed task:")
-    for i in tasks:
-        if i["title"] == completed_task_title:
-            found = True
-            i["completed"] = True
-    if not found:
-        print("Task not found.")
+    if tasks != []:
+        show_tasks()
+        completed_task_title = input("Select completed task:")
+        for i in tasks:
+            if i["title"] == completed_task_title:
+                found = True
+                i["completed"] = True
+        if not found:
+            print("Task not found.")
+    else:
+        print("No tasks added...")
 
 def delete_task():
     print("'Delete Task' selected")
     found = False
-    show_tasks()  
-    task_to_delete = input("Select task to delete:")
-    for i in tasks:
-        if i["title"] == task_to_delete:
-            found = True
-            tasks.remove(i)
-    if not found:
-        print("Task not found.")
+    if tasks != []: 
+        show_tasks() 
+        task_to_delete = input("Select task to delete:")
+        for i in tasks:
+            if i["title"] == task_to_delete:
+                found = True
+                tasks.remove(i)
+        if not found:
+            print("Task not found.")
+    else:
+        print("No tasks added...")
 
 while choice != 5:
     print("===== TO-DO LIST =====")
@@ -56,22 +62,26 @@ while choice != 5:
     print("3. Mark Task as Completed")
     print("4. Delete Task")
     print("5. Exit")
-    choice = int(input("Enter your choice no:"))
+    try:
+        choice = int(input("Enter your choice no:"))
     
-    if choice == 1:
-        add_task()
+        if choice == 1:
+            add_task()
 
-    elif choice == 2:
-        view_tasks()
+        elif choice == 2:
+            view_tasks()
                 
-    elif choice == 3:
-        mark_task_as_completed()
+        elif choice == 3:
+            mark_task_as_completed()
 
-    elif choice == 4:
-        delete_task()
+        elif choice == 4:
+            delete_task()
     
-    elif choice == 5:
-        print("DONE, Complete your tasks as soon as possible...")
+        elif choice == 5:
+            print("DONE, Complete your tasks as soon as possible...")
 
-    else:
-        print("Invalid choice")
+        else:
+            print("Invalid choice")
+
+    except ValueError:
+            print("Invalid choice")
