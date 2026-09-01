@@ -2,6 +2,9 @@ import json
 
 tasks = []
 
+with open("tasks.json", "r") as f:
+    tasks = json.load(f)
+
 choice = 0
 
 def show_tasks():
@@ -24,6 +27,8 @@ def add_task():
                 "completed": False
             }
             tasks.append(task)
+            with open("tasks.json", "w") as f:
+                json.dump(tasks, f, indent=4)
     else:
         print("Enter non-empty task...")
 
