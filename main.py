@@ -1,3 +1,5 @@
+import json
+
 tasks = []
 
 choice = 0
@@ -74,6 +76,7 @@ def delete_task():
                     found = True
                     tasks.remove(i)
                     print("Task deleted...")
+                    break
                 j += 1
             if not found:
                 print("Task not found.")
