@@ -48,8 +48,11 @@ def mark_task_as_completed():
             for i in tasks:
                 if j == completed_task_number:
                     found = True
-                    i["completed"] = True
-                    print("Task marked as completed...")
+                    if not i["completed"]:    # to check task already completed or not
+                        i["completed"] = True
+                        print("Task marked as completed...")
+                    else:
+                        print("Task Already completed...")
                 j += 1
             if not found:
                 print("Task not found.")
