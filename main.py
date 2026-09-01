@@ -58,6 +58,8 @@ def mark_task_as_completed():
                     if not i["completed"]:    # to check task already completed or not
                         i["completed"] = True
                         print("Task marked as completed...")
+                        with open("tasks.json", "w") as f:
+                            json.dump(tasks, f, indent=4)
                     else:
                         print("Task Already completed...")
                 j += 1
