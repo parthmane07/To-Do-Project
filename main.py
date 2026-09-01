@@ -9,11 +9,16 @@ def show_tasks():
 def add_task():
     print("'Add Task' selected")
     title = input("Enter task title:")
-    task ={
-        "title": title,
-        "completed": False
-    }
-    tasks.append(task)
+    for i in tasks:
+        if i["title"] == title:
+            print("This task already exists...")
+            break
+    else:
+        task ={
+            "title": title,
+            "completed": False
+        }
+        tasks.append(task)
 
 def view_tasks():
     print("'View Tasks' selected")
