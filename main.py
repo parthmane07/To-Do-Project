@@ -10,17 +10,20 @@ def show_tasks():
 
 def add_task():
     print("'Add Task' selected")
-    title = input("Enter task title:")
-    for i in tasks:
-        if i["title"] == title:
-            print("This task already exists...")
-            break
+    title = input("Enter task title:").strip()
+    if title != "":
+        for i in tasks:
+            if i["title"] == title:
+                print("This task already exists...")
+                break
+        else:
+            task ={
+                "title": title,
+                "completed": False
+            }
+            tasks.append(task)
     else:
-        task ={
-            "title": title,
-            "completed": False
-        }
-        tasks.append(task)
+        print("Enter non-empty task...")
 
 def view_tasks():
     print("'View Tasks' selected")
@@ -32,43 +35,49 @@ def view_tasks():
             print(j,".", i["title"] + "-- completed")
         else:
             print(j,".",i["title"] + "-- incomplete")
-    j += 1
+        j += 1
 
 def mark_task_as_completed():
     print("'Mark Task as Completed' selected")
     found = False
-    if tasks != []:
-        show_tasks()
-        completed_task_number = int(input("Select completed task number:"))
-        j = 1
-        for i in tasks:
-            if j == completed_task_number:
-                found = True
-                i["completed"] = True
-                print("Task marked as completed...")
-            j += 1
-        if not found:
-            print("Task not found.")
-    else:
-        print("No tasks added...")
+    try:
+        if tasks != []:
+            show_tasks()
+            completed_task_number = int(input("Select completed task number:"))
+            j = 1
+            for i in tasks:
+                if j == completed_task_number:
+                    found = True
+                    i["completed"] = True
+                    print("Task marked as completed...")
+                j += 1
+            if not found:
+                print("Task not found.")
+        else:
+            print("No tasks added...")
+    except ValueError:
+        print("Enter valid task number...")
 
 def delete_task():
     print("'Delete Task' selected")
     found = False
-    if tasks != []: 
-        show_tasks() 
-        task_to_delete = int(input("Select task number to delete:"))
-        j = 1
-        for i in tasks:
-            if j == task_to_delete:
-                found = True
-                tasks.remove(i)
-                print("Task deleted...")
-            j += 1
-        if not found:
-            print("Task not found.")
-    else:
-        print("No tasks added...")
+    try:
+        if tasks != []: 
+            show_tasks() 
+            task_to_delete = int(input("Select task number to delete:"))
+            j = 1
+            for i in tasks:
+                if j == task_to_delete:
+                    found = True
+                    tasks.remove(i)
+                    print("Task deleted...")
+                j += 1
+            if not found:
+                print("Task not found.")
+        else:
+            print("No tasks added...")
+    except ValueError:
+        print("Enter valid task number...")
 
 while choice != 5:
     print("===== TO-DO LIST =====")
